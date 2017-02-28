@@ -1,0 +1,28 @@
+{% extends 'layout.jinja2' %}
+
+{% block subtitle %}Edit {{ context.page.name }} - {% endblock subtitle %}
+
+{% block content %}
+  <link rel="stylesheet"
+        href="{{ request.static_url('deform:static/css/form.css') }}"
+        type="text/css"/>
+
+  {% for reqt in reqts['css'] %}
+    <link rel="stylesheet" type="text/css" href="{{ request.static_url(reqt) }}"/>
+  {% endfor %}
+
+  {% for reqt in reqts['js'] %}
+    <script src="{{ request.static_url(reqt) }}"></script>
+  {% endfor %}
+
+  <p>
+    Editing <strong>{{ context.page.name }}</strong>
+  </p>
+  <p>You can return to the
+    <a href="{{ request.route_url('view_page', pagename='FrontPage') }}">FrontPage</a>.
+  </p>
+  {{ form|safe }}
+  <script>
+      deform.load();
+  </script>
+{% endblock content %}
