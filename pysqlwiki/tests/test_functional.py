@@ -19,6 +19,7 @@ class FunctionalTests(unittest.TestCase):
         settings = {
             'sqlalchemy.url': 'sqlite://',
             'auth.secret': 'secret',
+            'jinja2.filters': 'route_url = pyramid_jinja2.filters:route_url_filter'
         }
         app = main({}, **settings)
         cls.test_app = webtest.TestApp(app)
